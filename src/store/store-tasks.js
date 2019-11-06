@@ -29,7 +29,6 @@ const mutations = {
     Object.assign(state.tasks[payload.id], payload.updates);
   },
   deleteTask(state, id) {
-    console.log("id from deleteTask mutation: ", id);
     Vue.delete(state.tasks, id);
   }
 };

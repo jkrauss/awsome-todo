@@ -48,9 +48,16 @@ module.exports = function(ctx) {
         "QList",
         "QItem",
         "QItemSection",
-        "QItemLabel"
+        "QItemLabel",
+
+        "QDialog",
+        "QSpace",
+
+        "QInput",
+        "QDate",
+        "QTime"
       ],
-      directives: [],
+      directives: ["ClosePopup"],
 
       // Quasar plugins
       plugins: ["Dialog"]
