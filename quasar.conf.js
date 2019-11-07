@@ -55,12 +55,13 @@ module.exports = function(ctx) {
 
         "QInput",
         "QDate",
-        "QTime"
+        "QTime",
+        "QForm"
       ],
       directives: ["ClosePopup"],
 
       // Quasar plugins
-      plugins: ["Dialog"]
+      plugins: ["Dialog", "Notify"]
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
