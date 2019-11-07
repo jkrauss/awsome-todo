@@ -1,28 +1,23 @@
 <template>
   <q-card>
-    <q-card-section class="row">
-      <div class="text-h6">Add Task</div>
-      <q-space />
-      <q-btn dense flat round icon="close" v-close-popup />
-    </q-card-section>
+<modal-header >
+  Add Task
+</modal-header>
 
     <q-form @submit.prevent="submitForm">
 
       <q-card-section>
-        <div class="row q-mb-sm">
-          <q-input 
-            outlined autofocus clearable
-            v-model="taskToSubmit.name" 
-            label="Task name" 
-            class="col" 
-            :rules="[val => !!val || 'Field is required']"
-            />
-        </div>
+        <modal-name :name.sync="taskToSubmit.name"></modal-name>
 
         <div class="row q-mb-sm">
-          <q-input outlined clearable v-model="taskToSubmit.dueDate" label="Due date">
+          <q-input 
+            outlined 
+            clearable 
+            v-model="taskToSubmit.dueDate" 
+            label="Due date"
+            >
             <template v-slot:append>
-              <q-icon name="event" class="cursor-pointer">
+              <q-icon v-if="!taskToSubmit.dueDate" name="event" class="cursor-pointer">
                 <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
                   <q-date
                     v-model="taskToSubmit.dueDate"
@@ -40,7 +35,7 @@
           class="row q-mb-sm">
           <q-input outlined clearable v-model="taskToSubmit.dueTime" label="Due time" class="col">
             <template v-slot:append>
-              <q-icon name="access_time" class="cursor-pointer">
+              <q-icon v-if="!taskToSubmit.dueTime" name="access_time" class="cursor-pointer">
                 <q-popup-proxy transition-show="scale" transition-hide="scale">
                   <q-time v-model="taskToSubmit.dueTime" />
                 </q-popup-proxy>
@@ -53,6 +48,7 @@
     <q-card-actions align="right">
       <q-btn label="Save" color="primary" type="submit" />
     </q-card-actions>
+    <pre>{{taskToSubmit}}</pre>
       </q-form>
   </q-card>
 </template>
@@ -78,6 +74,10 @@
         this.addTask(this.taskToSubmit);
         this.$emit('close')
       }
+    },
+    components:{
+      'modal-header': require('components/tasks/modals/shared/modalHeader.vue').default,
+      'modal-name': require('components/tasks/modals/shared/modalName.vue').default
     }
   };
 </script>
