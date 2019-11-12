@@ -57,9 +57,10 @@ module.exports = function(ctx) {
         "QDate",
         "QTime",
         "QForm",
-        "QBanner"
+        "QBanner",
+        "QSelect"
       ],
-      directives: ["ClosePopup"],
+      directives: ["ClosePopup", "TouchHold"],
 
       // Quasar plugins
       plugins: ["Dialog", "Notify"]

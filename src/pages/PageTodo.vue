@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-pa-md">
     <div class="row q-mb-lg">
-      <search />
+      <search /><sort />
     </div >
     <p v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length">No search results</p>
     <no-tasks 
@@ -41,7 +41,8 @@ export default {
     "tasks-todo": require("components/tasks/tasksTodo.vue").default,
     "tasks-completed": require("components/tasks/tasksCompleted.vue").default,
     "no-tasks": require("components/tasks/noTasks.vue").default,
-    "search": require("components/tasks/tools/search.vue").default
+    "search": require("components/tasks/tools/search.vue").default,
+    "sort": require("components/tasks/tools/sort.vue").default
   },
   mounted() {
     this.$root.$on('showAddTask', () => {this.showAddTask=true})
