@@ -1,13 +1,14 @@
 <template>
     <q-banner dense inline-actions 
-        class="text-white bg-orange-6 text-center list-header">
+        :class="bgColor"
+        class="text-white text-center list-header">
       <span class="text-bold text-subtitle1"><slot /></span>
 
     </q-banner>
 </template>
 <script>
 export default {
-    
+    props:["bgColor"]
 }
 </script>
 <style>

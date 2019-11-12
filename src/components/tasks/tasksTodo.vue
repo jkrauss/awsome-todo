@@ -1,6 +1,6 @@
 <template>
 <div>
-    <list-header >Todo</list-header >
+    <list-header :bgColor="'bg-orange-6'" >Todo</list-header >
     <q-list 
       bordered 
       separator

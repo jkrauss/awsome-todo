@@ -21,7 +21,9 @@ const state = {
       dueDate: "2019-11-04",
       dueTime: "13:00"
     }
-  }
+  },
+  search: ''
+  //TODO: insert and use showAddTaskModal instead of the quasar global event bus
 };
 
 const mutations = {
@@ -34,6 +36,9 @@ const mutations = {
   },
   addTask(state, payload){
     Vue.set(state.tasks, payload.id, payload.task)
+  },
+  setSearch(state, value){
+    state.search = value
   }
 
 };
@@ -52,17 +57,34 @@ const actions = {
       id: taskId,
       task: task
     }
-
     commit("addTask", payload);
+  },
+  setSearch({commit}, value){
+    commit("setSearch", value)
   }
 };
 
 const getters = {
-  tasksTodo: state => {
+  tasksFiltered: state => {
+    let tasksFiltered = {}
+    if (state.search){
+      Object.keys(state.tasks).forEach(function(key){
+        let task = state.tasks[key],
+            taskNameLowercase = task.name.toLowerCase(),
+            searchLowerCase = state.search.toLowerCase()
+        if(taskNameLowercase.includes(searchLowerCase)){
+          tasksFiltered[key] = task
+        }
+      })
+      return tasksFiltered
+    }
+    return state.tasks
+  },
+  tasksTodo: (state, getters) => {
+    let tasksFiltered = getters.tasksFiltered
     let tasks = {}
-    
-     Object.keys(state.tasks).forEach(function(key){
-       let task = state.tasks[key]
+     Object.keys(tasksFiltered).forEach(function(key){
+       let task = tasksFiltered[key]
        if (!task.completed){
          tasks[key] = task
        }       
@@ -70,11 +92,11 @@ const getters = {
     
     return tasks;
   },
-  tasksCompleted: state => {
+  tasksCompleted: (state, getters) => {
+    let tasksFiltered = getters.tasksFiltered
     let tasks = {}
-    
-     Object.keys(state.tasks).forEach(function(key){
-       let task = state.tasks[key]
+     Object.keys(tasksFiltered).forEach(function(key){
+       let task = tasksFiltered[key]
        if (task.completed){
          tasks[key] = task
        }       

@@ -1,7 +1,7 @@
 <template>
-<div>
+<div class="q-mt-lg">
     
-    <list-header>Done</list-header >
+    <list-header :bgColor="'bg-green-6'">Done</list-header >
     <q-list 
       bordered 
       separator
