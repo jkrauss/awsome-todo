@@ -1,22 +1,20 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated >
+    <q-header elevated>
       <q-toolbar>
-        <q-toolbar-title class="absolute-center">
-          Awesome Todo
-        </q-toolbar-title>
-
+        <q-toolbar-title class="absolute-center">Awesome Todo</q-toolbar-title>
+        <q-btn class="absolute-right" flat icon-right="account_circle" label="Login" to="/auth" />
       </q-toolbar>
     </q-header>
     <q-footer elevated>
-      <q-tabs
-      >
-        <q-route-tab  
+      <q-tabs>
+        <q-route-tab
           v-for="nav in navs"
           :key="nav.label"
-          :icon="nav.icon" 
+          :icon="nav.icon"
           :label="nav.label"
-          :to="nav.to" />
+          :to="nav.to"
+        />
       </q-tabs>
     </q-footer>
 
@@ -30,14 +28,14 @@
     >
       <q-list dark>
         <q-item-label header>Navigation</q-item-label>
-        <q-item 
+        <q-item
           v-for="nav in navs"
           :key="nav.label"
-          clickable 
+          clickable
           :to="nav.to"
           class="text-grey-4"
           exact
-          >
+        >
           <q-item-section avatar>
             <q-icon :name="nav.icon" />
           </q-item-section>
@@ -56,42 +54,42 @@
 
 <script>
 export default {
-  name: 'MyLayout',
+  name: "MyLayout",
 
-  data () {
+  data() {
     return {
       leftDrawerOpen: false,
       navs: [
         {
-          label: 'Todo',
-          icon: 'list',
-          to: '/'
+          label: "Todo",
+          icon: "list",
+          to: "/"
         },
         {
-          label: 'Settings',
-          icon: 'settings',
-          to: '/settings'
+          label: "Settings",
+          icon: "settings",
+          to: "/settings"
         },
         {
-          label: 'Help',
-          icon: 'help',
-          to: '/settings/help'
+          label: "Help",
+          icon: "help",
+          to: "/settings/help"
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
 <style lang="scss">
-  @media screen and (min-width: 768px) {
-    .q-footer {
-      display: none
-    }
+@media screen and (min-width: 768px) {
+  .q-footer {
+    display: none;
   }
+}
 
-  .q-drawer {
-    .q-router-link--active {
-      color: white !important;
-    }
+.q-drawer {
+  .q-router-link--active {
+    color: white !important;
   }
+}
 </style>
