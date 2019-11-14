@@ -16,8 +16,10 @@
   </q-card>
 </template>
 <script>
+import mixinAddEditTask from 'src/mixins/mixin-add-edit-task'
 import { mapActions } from "vuex";
 export default {
+  mixins: [mixinAddEditTask],
   data() {
     return {
       taskToSubmit: {
@@ -30,25 +32,11 @@ export default {
   },
   methods: {
     ...mapActions("tasks", ["addTask"]),
-    submitForm() {
-      this.submitTask();
-    },
+
     submitTask() {
       this.addTask(this.taskToSubmit);
       this.$emit("close");
     }
-  },
-  components: {
-    "modal-header": require("components/tasks/modals/shared/modalHeader.vue")
-      .default,
-    "modal-task-name": require("components/tasks/modals/shared/modalTaskName.vue")
-      .default,
-    "modal-due-date": require("components/tasks/modals/shared/modalDueDate.vue")
-      .default,
-    "modal-due-time": require("components/tasks/modals/shared/modalDueTime.vue")
-      .default,
-    "modal-buttons": require("components/tasks/modals/shared/modalbuttons.vue")
-      .default
   }
 };
 </script>
