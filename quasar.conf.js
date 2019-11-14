@@ -58,12 +58,13 @@ module.exports = function(ctx) {
         "QTime",
         "QForm",
         "QBanner",
-        "QSelect"
+        "QSelect",
+        "QScrollArea"
       ],
       directives: ["ClosePopup", "TouchHold"],
 
       // Quasar plugins
-      plugins: ["Dialog", "Notify"]
+      plugins: ["Dialog", "Notify", "LocalStorage"]
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie

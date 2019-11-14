@@ -1,21 +1,36 @@
 <template>
-  <q-page class="q-pa-md">
-    <div class="row q-mb-lg">
-      <search /><sort />
-    </div >
-    <p v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length">No search results</p>
-    <div class="relative-position">
-      <no-tasks 
-      v-if="!search && !Object.keys(tasksTodo).length" 
-      ></no-tasks>
-      <tasks-todo :tasksTodo="tasksTodo" v-if="Object.keys(tasksTodo).length"/>
-      <tasks-completed :tasksCompleted="tasksCompleted" v-if="Object.keys(tasksCompleted).length"/>
-    </div>
+  <q-page>
 
-    <div class="absolute-bottom text-center q-mb-lg">
-      <q-btn @click="showAddTask=true" round dense color="primary" size="24px" icon="add" />
-    </div>
+    <div class="q-pa-md absolute full-width full-height column">
 
+      <div class="row q-mb-lg">
+        <search /><sort />
+      </div >
+      <p v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length">No search results</p>
+      <q-scroll-area
+        class="q-scroll-area-tasks"
+      >
+        <no-tasks 
+        v-if="!search && !Object.keys(tasksTodo).length && !settings.showTasksInOneList" 
+        ></no-tasks>
+        <tasks-todo :tasksTodo="tasksTodo" v-if="Object.keys(tasksTodo).length"/>
+        <tasks-completed 
+          :tasksCompleted="tasksCompleted" 
+          v-if="Object.keys(tasksCompleted).length"
+          class="q-mb-xl"/>
+      </q-scroll-area>
+
+      <div class="absolute-bottom text-center q-mb-lg no-pointer-events">
+        <q-btn 
+          @click="showAddTask=true" 
+          round 
+          dense 
+          color="primary" 
+          size="24px" 
+          icon="add" 
+          class="all-pointer-events"/>
+      </div>
+    </div>
     <q-dialog v-model="showAddTask">
       <add-task @close="showAddTask=false" ></add-task>
     </q-dialog>
@@ -35,6 +50,7 @@ export default {
     // return this.$store.getters["tasks/tasks"];
     // }
     ...mapGetters("tasks", ["tasksTodo", "tasksCompleted"]),
+    ...mapGetters("settings", ["settings"]),
     ...mapState("tasks", ["search"])
   },
   components: {
@@ -55,4 +71,8 @@ export default {
 </script>
 
 <style>
+  .q-scroll-area-tasks {
+    display: flex;
+    flex-grow: 1;
+  }
 </style>
