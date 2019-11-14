@@ -71,6 +71,11 @@ export default {
           label: 'Settings',
           icon: 'settings',
           to: '/settings'
+        },
+        {
+          label: 'Help',
+          icon: 'help',
+          to: '/settings/help'
         }
       ]
     }
