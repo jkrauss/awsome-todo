@@ -20,7 +20,7 @@
 
         <q-tab-panels v-model="tab" animated>
           <q-tab-panel name="login">
-            <login-register :tab="tab">Login</login-register>
+            <login-register :tab="tab">Login to see your todos anywhere!&nbsp;&nbsp;&nbsp;&nbsp;</login-register>
           </q-tab-panel>
 
           <q-tab-panel name="register">
@@ -35,7 +35,7 @@
 export default {
   data() {
     return {
-      tab: "register"
+      tab: "login"
     };
   },
   components: {

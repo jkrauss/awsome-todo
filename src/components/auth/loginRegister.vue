@@ -28,11 +28,12 @@
 
     <div class="row">
       <q-space />
-      <q-btn label="Register" type="submit" color="primary" />
+      <q-btn :label="tab" type="submit" color="primary" />
     </div>
   </q-form>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -40,12 +41,13 @@ export default {
     };
   },
   methods: {
+    ...mapActions("auth", ["registerUser", "loginUser"]),
     onSubmit() {
-      console.log(
-        "submit " + this.tab + ": ",
-        this.formData.email,
-        this.formData.password
-      );
+      if (this.tab == "login") {
+        this.loginUser(this.formData);
+      } else {
+        this.registerUser(this.formData);
+      }
     },
     isValidEmail(email) {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
