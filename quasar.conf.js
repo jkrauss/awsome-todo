@@ -61,7 +61,8 @@ module.exports = function(ctx) {
         "QSelect",
         "QScrollArea",
         "QTabPanels",
-        "QTabPanel"
+        "QTabPanel",
+        "QSpinner"
       ],
       directives: ["ClosePopup", "TouchHold"],
 
