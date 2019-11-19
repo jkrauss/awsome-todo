@@ -1,16 +1,19 @@
 <template>
   <q-page>
-    <div class="q-pa-md absolute full-width full-height colum">
+    <div class="q-pa-md absolute full-width full-height column">
       <template v-if="tasksDownloaded">
         <div class="row q-mb-lg">
           <search />
           <sort />
         </div>
-        <p class="row"
+        <p
+          class="row"
           v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length"
         >No search results</p>
         <q-scroll-area class="q-scroll-area-tasks row">
-          <no-tasks v-if="!search && !Object.keys(tasksTodo).length && !settings.showTasksInOneList"></no-tasks>
+          <no-tasks
+            v-if="!search && !Object.keys(tasksTodo).length && !settings.showTasksInOneList"
+          ></no-tasks>
           <tasks-todo :tasksTodo="tasksTodo" v-if="Object.keys(tasksTodo).length" />
           <tasks-completed
             :tasksCompleted="tasksCompleted"
@@ -33,10 +36,7 @@
       </template>
       <template v-else>
         <span class="absolute-center">
-        <q-spinner
-          color="primary"
-          size="5em"
-        />
+          <q-spinner color="primary" size="5em" />
         </span>
       </template>
     </div>
@@ -80,9 +80,10 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .q-scroll-area-tasks {
   display: flex;
   flex-grow: 1;
+  height: auto !important;
 }
 </style>
