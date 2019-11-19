@@ -33,7 +33,8 @@ const state = {
 const mutations = {
   // mutations are instant changes to the store
   updateTask(state, payload) {
-    Object.assign(state.tasks[payload.id], payload.updates);
+    //Object.assign(state.tasks[payload.id], payload.updates);
+    state.tasks[payload.id] = payload.updates
   },
   deleteTask(state, id) {
     Vue.delete(state.tasks, id);
