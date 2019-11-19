@@ -1,15 +1,15 @@
 <template>
   <q-page>
-    <div class="q-pa-md absolute full-width full-height column">
+    <div class="q-pa-md absolute full-width full-height colum">
       <template v-if="tasksDownloaded">
         <div class="row q-mb-lg">
           <search />
           <sort />
         </div>
-        <p
+        <p class="row"
           v-if="search && !Object.keys(tasksTodo).length && !Object.keys(tasksCompleted).length"
         >No search results</p>
-        <q-scroll-area class="q-scroll-area-tasks">
+        <q-scroll-area class="q-scroll-area-tasks row">
           <no-tasks v-if="!search && !Object.keys(tasksTodo).length && !settings.showTasksInOneList"></no-tasks>
           <tasks-todo :tasksTodo="tasksTodo" v-if="Object.keys(tasksTodo).length" />
           <tasks-completed
