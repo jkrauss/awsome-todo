@@ -13,7 +13,7 @@ export default {
           .default,
         "modal-due-time": require("components/tasks/modals/shared/modalDueTime.vue")
           .default,
-        "modal-buttons": require("components/tasks/modals/shared/modalbuttons.vue")
+        "modal-buttons": require("components/tasks/modals/shared/modalButtons.vue")
           .default
       }
 }
