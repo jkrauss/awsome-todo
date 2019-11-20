@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <div class="q-pa-md absolute full-width full-height">
+    <div class="q-pa-md absolute full-width full-height column">
       <template v-if="tasksDownloaded">
         <div class="q-mb-lg row">
           <search />
